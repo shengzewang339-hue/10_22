@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=1
+    # 在Django应用启动前等待数据库就绪（如果有数据库的话）
+    # depends_on:
+    #   - db
+
+  # 如果需要数据库，可以取消注释下面的部分
+  # db:
+  #   image: postgres:13
+  #   environment:
+  #     - POSTGRES_DB=mydatabase
+  #     - POSTGRES_USER=myuser
+  #     - POSTGRES_PASSWORD=mypassword
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+# 如果使用数据库，需要定义卷
+# volumes:
+#   postgres_data:
